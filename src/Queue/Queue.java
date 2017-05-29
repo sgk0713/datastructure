@@ -1,5 +1,109 @@
 package Queue;
 public class Queue {
+	
+	public static void main(String[] args){
+		Queue q = new Queue();
+		q.enqueue("1");
+		q.enqueue("2");
+		q.enqueue("1");
+		System.out.println("queue list : " + q.printQueue());
+		System.out.println("size : "+q.size());
+		System.out.println("first() : " + q.first());
+		System.out.println("isEmpty() : " + q.isEmpty());
+		System.out.println("dequeue() : " + q.dequeue());
+		System.out.println();
+		System.out.println("queue list : " + q.printQueue());
+		System.out.println("size : "+q.size());
+		System.out.println("first() : " + q.first());
+		System.out.println("isEmpty() : " + q.isEmpty());
+		System.out.println("dequeue() : " + q.dequeue());
+		System.out.println();
+		System.out.println("queue list : " + q.printQueue());
+		System.out.println("size : "+q.size());
+		System.out.println("first() : " + q.first());
+		System.out.println("isEmpty() : " + q.isEmpty());
+		System.out.println("dequeue() : " + q.dequeue());
+		System.out.println();
+		System.out.println("queue list : " + q.printQueue());
+		System.out.println("size : "+q.size());
+		System.out.println("first() : " + q.first());
+		System.out.println("isEmpty() : " + q.isEmpty());
+		System.out.println("dequeue() : " + q.dequeue());
+		System.out.println();
+		System.out.println("queue list : " + q.printQueue());
+		System.out.println("size : "+q.size());
+		System.out.println("first() : " + q.first());
+		System.out.println("isEmpty() : " + q.isEmpty());
+		System.out.println("dequeue() : " + q.dequeue());
+		System.out.println();
+	}
+	
+	
+	private Node front;
+	private Node rear=front;
+	private int size = 0;
+	
+	private class Node{
+		String data;
+		Node next;
+		Node(String data){
+			this.data = data;
+		}
+	}
+	
+	public void enqueue(String data){
+		Node newNode = new Node(data);
+		if(front == null){
+			front = newNode;
+			rear = front;
+		}else{
+			rear.next = newNode;
+			rear = newNode;
+		}
+		size++;
+	}
+	
+	public String dequeue(){
+		if(isEmpty()){
+			return null;
+		}else{
+			Node temp = front;
+			front = front.next;
+			size--;
+			return temp.data;			
+		}
+		
+	}
+	
+	
+	public boolean isEmpty(){
+		return size == 0 ? true : false;
+	}
+	
+	public String first(){
+		return size == 0 ? null : front.data;
+	}
+	
+	public int size(){
+		return size;
+	}
+	
+	public String printQueue(){
+		if(size()==0) return "()";
+		else{
+			Node temp = front;
+			String text = temp.data;
+			temp = temp.next;
+			while(temp != null){
+				text += ", " +temp.data;
+				temp = temp.next;
+			}
+			return "(" + text +")";
+		}
+	}
+	
+	
+	/*
 	private int size;
 	private Node front;
 	private Node rear;
@@ -64,5 +168,5 @@ public class Queue {
 			return "("+text+")";
 			
 		}
-	}
+	}*/
 }

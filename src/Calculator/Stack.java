@@ -1,81 +1,66 @@
 package Calculator;
 public class Stack{
-/*	private Node top;
-	private int size=0;
+	
+	public static void main(String[] args){
+		Stack s = new Stack();
+		s.push("1");
+		s.push("2");
+		s.push("2");
+		s.push("2");
+		s.push("2");
+		s.push("2");
+		System.out.println("Stack list : " + s.printStack());
+		System.out.println("size : "+s.size());
+		System.out.println("top() : " + s.top());
+		System.out.println("isEmpty() : " + s.isEmpty());
+		System.out.println("pop() : " + s.pop());
+		System.out.println();
+		System.out.println("Stack list : " + s.printStack());
+		System.out.println("size : "+s.size());
+		System.out.println("top() : " + s.top());
+		System.out.println("isEmpty() : " + s.isEmpty());
+		System.out.println("pop() : " + s.pop());
+		System.out.println();
+		System.out.println("Stack list : " + s.printStack());
+		System.out.println("size : "+s.size());
+		System.out.println("top() : " + s.top());
+		System.out.println("isEmpty() : " + s.isEmpty());
+		System.out.println("pop() : " + s.pop());
+		System.out.println();
+	}
+	
+	private int size = 0;
+	private Node top;
+	
 	
 	private class Node{
-		private Object data;
-		private Node next;
-		Node(Object data){
+		Node next;
+		String data;
+		Node(String data){
 			this.data = data;
 		}
 	}
 	
-	//adds element to the top of the stack
-	public void push(Object data){
-		Node NewNode = new Node(data);
-		NewNode.next = top;
-		top = NewNode;
-		size++;
-	}
-	
-	//removes and returns the top element from the stack(or null if the stack is empty)
-	public Object pop(){
-	     if(isEmpty()) return null;
-	     Node pop = top;
-	     top = top.next;
-	     size--;
-	     return pop.data;
-	}
-	
-	//returns the element of the stack, without removing it(or null if the stack is empty)
-	public Object top(){
-		return top == null ? null : top.data; 
-	}
-	
-	//returns the number of elements in the stack
 	public int size(){
 		return size;
 	}
 	
-	//returns a boolean indicating whether the stack is empty
 	public boolean isEmpty(){
 		return size == 0 ? true : false;
 	}
 	
-	public String PrintStack(){
-		if(size == 0) return"()";
-		else{
-			int count = size-1;
-			Object text = top.data;
-			Node temp = top;
-			while(count != 0){
-				temp = temp.next;
-				text = temp.data + ", " + text;
-				count--;
-			}
-		return "("+text+")";
-		}
-	}*/
-	
-	private Node top = null;
-	private int size = 0;
-	private class Node{
-		Object data;
-		Node next;
-		Node(Object data){
-			this.data = data;
-			this.next = null;
-		}
-	}
-	
-	public void push(Object data){
+	public void push(String data){
 		Node newNode = new Node(data);
-		top.next = newNode;
-		newNode = top;
+		newNode.next = top;
+		top = newNode;
 		size++;
 	}
-	public Object pop(){
+	
+	public String top(){
+		return size == 0 ? null : top.data;
+	}
+	
+	public String pop(){
 		if(isEmpty()) return null;
 		Node temp = top;
 		top = top.next;
@@ -83,35 +68,18 @@ public class Stack{
 		return temp.data;
 	}
 	
-	public boolean isEmpty(){
-		return size == 0 ? true:false;
-	}
-	
-	public Object top(){
-		return top == null ? null : top.data;
-	}
-	
-	public int size(){
-		return size;
-	}
-	
 	public String printStack(){
 		if(isEmpty()) return "()";
 		else{
-			int cnt = size;
 			Node temp = top;
-			Object text = top.data;
-			while(cnt!=0){
+			String text = temp.data;
+			temp = temp.next;
+			while(temp!= null){
+				text += ", "+temp.data;
 				temp = temp.next;
-				text = temp.data + ", " + text; 
-				cnt--;
 			}
-		return "(" +text+")";
+			return "("+text+")";
 		}
 	}
 	
-	public static void main(String[] args){
-		Stack s = new Stack();
-		s.push(1);
-	}
 }
